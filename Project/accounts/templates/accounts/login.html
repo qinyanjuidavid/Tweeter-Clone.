@@ -1,0 +1,43 @@
+{%extends 'tweeter/base.html'%}
+{%load crispy_forms_tags%}
+{%block content%}
+<div class="card position-fixed col-sm-6 text-white" style=background-color:#131a2d;height:47rem;>
+  <div class="card-header border-white sticky-top" style=background-color:#131a2d;>
+    <div class="row">
+      <div class="col-sm-3">
+      <h4 class="text-white float-left"><a style=margin-left:20px;>Tweet</a></h4>
+      </div>
+  </div>
+    </div>
+    <div class="col-sm-12" style=margin-top:8rem; align=center>
+    <a href="" class="btn btn-primary col-sm-6"  data-toggle="modal" data-target="#modalPoll-1">Sign In</a>
+    </div>
+<div class="modal fade right" id="modalPoll-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true" data-backdrop="false">
+  <div class="modal-dialog modal-full-height modal-right modal-notify modal-info" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <p class="heading lead text-dark">Create Account</p>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true" class="white-text">×</span>
+        </button>
+      </div>
+      <form method="POST" action="" enctype="multipart/form-data">
+      <div class="modal-body text-dark">
+        {%csrf_token%}
+        {{form|crispy}}
+
+      </div>
+
+      <div class="modal-footer justify-content-center">
+        <button class="btn btn-primary">Login</button>
+
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+
+{%endblock%}

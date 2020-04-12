@@ -5,6 +5,7 @@ from tweeter.models import Tweet
 
 class TweetCreationForm(ModelForm):
     class Meta:
-        content=forms.CharField(widget=forms.Textarea,help_text="What's happening?")
+        content=forms.CharField(label=" ",widget=forms.Textarea(
+        attrs={'placeholder':"What's happening?","class":"form-control"}))
         model=Tweet
         fields=('content','image')

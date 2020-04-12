@@ -17,18 +17,24 @@ crossorigin="anonymous">
     <div class="container-fluid">
     <div class="row">
       <div class="col-sm-3">
-        <div class="wrapper d-flex">
+        <div class="wrapper d-flex bg-white">
             <div class="sidebar" style=width:350px;>
                 <ul style=margin-left:30px;>
                     <li><a href="{%url 'tweeter:home'%}"><i class="fa fa-home"></i>Home</a></li>
                     <li class="notification2"><a href="#"><i class="fa fa-envelope"></i>Messages</a><span class="number2">5</span></li>
+                    {%if user.is_authenticated%}
+                    <li><a href="{%url 'accounts:logout'%}">Logout</a></li>
+                    {%else%}
+                    <li><a href="{%url 'accounts:login'%}"><i class="fa fa-sign-in" aria-hidden="true"></i>Login</a></li>
+                    <li><a href="{%url 'accounts:register'%}"><i class="fa fa-sign-in" aria-hidden="true"></i>Register</a></li>
+                    {%endif%}
                 </ul>
             </div>
         </div>
 
         </div>
 
-      <div class="col-sm-6">
+      <div class="col-sm-6 p-1">
     {%block content%}
     {%endblock%}
   </div>

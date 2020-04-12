@@ -5,14 +5,17 @@
       <div class="card-header border-white sticky-top" style=background-color:#131a2d;>
         <div class="row">
           <div class="col-sm-3">
-          <h4 class="text-white float-left"><a href="{%url 'tweeter:home'%}"><i class="fa fa-long-arrow-left fa-lg text-primary"></i></a><a style=margin-left:50px;>Tweet</a></h4>
+          <h4 class="text-white float-left"><a href="{%url 'tweeter:home'%}"><i class="fa fa-twitter fa-lg text-primary"></i></a><a style=margin-left:50px;>Tweet</a></h4>
           </div>
-          <div class="col-sm-9">
+          <div class="col-sm-6">
           <form method="GET" action="{%url 'tweeter:home'%}" class="form-inline float-right">
         <input name="q" class="form-control form-control-sm ml-1 w-50" type="text" placeholder="Search" value="{{request.GET.q}}" aria-label="Search">
         <button class="btn"><i class="fa fa-search btn text-white"></i></button>
       </form>
       </div>
+      <div class="col-sm-3">
+
+        </div>
       </div>
         </div>
 

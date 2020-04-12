@@ -16,7 +16,7 @@ SECRET_KEY = 'riz8@xwv6w1v&(dqtyipv=a(36u%b*p$!h^hi1&#2esdmhox=3'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+AUTH_USER_MODEL='accounts.User'
 
 # Application definition
 
@@ -29,7 +29,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'tweeter',
     'crispy_forms',
-    'django_icons'
+    'django_icons',
+    'rest_framework',
+    'accounts'
 ]
 
 MIDDLEWARE = [
@@ -115,9 +117,9 @@ STATICFILES_DIRS=[
 os.path.join(BASE_DIR,'static'),
 ]
 STATIC_ROOT=os.path.join(os.path.dirname(BASE_DIR),'static-serve')
-LOGIN_URL=""
-LOGIN_REDIRECT_URL=""
-LOGOUT_REDIRECT_URL=""
+LOGIN_URL="/accounts/login/"
+LOGIN_REDIRECT_URL="/"
+LOGOUT_REDIRECT_URL="/accounts/login/"
 MEDIA_URL='/media/'
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 CRISPY_TEMPLATE_PACK="bootstrap4"
