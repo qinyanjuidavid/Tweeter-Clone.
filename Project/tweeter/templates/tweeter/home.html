@@ -1,0 +1,95 @@
+{%extends 'tweeter/base.html'%}
+{%load crispy_forms_tags%}
+{%block content%}
+    <div class="card text-white" style=background-color:#131a2d;>
+      <div class="card-header border-white sticky-top" style=background-color:#131a2d;>
+        <div class="row">
+          <div class="col-sm-3">
+          <h4 class="text-white float-left"><a href="{%url 'tweeter:home'%}"><i class="fa fa-long-arrow-left fa-lg text-primary"></i></a><a style=margin-left:50px;>Tweet</a></h4>
+          </div>
+          <div class="col-sm-9">
+          <form method="GET" action="{%url 'tweeter:home'%}" class="form-inline float-right">
+        <input name="q" class="form-control form-control-sm ml-1 w-50" type="text" placeholder="Search" value="{{request.GET.q}}" aria-label="Search">
+        <button class="btn"><i class="fa fa-search btn text-white"></i></button>
+      </form>
+      </div>
+      </div>
+        </div>
+
+
+        <div class="card-body">
+
+      <form method="POST" action="" enctype="multipart/form-data">
+      {%csrf_token%}
+      <a>{{form.content|as_crispy_field}}</a>
+      <div class="card-footer">
+        <div class="row">
+          <div class="col-sm-6">
+        {{form.image|as_crispy_field}}
+        </div>
+        <div class="col-sm-6" align=right>
+      <button class="btn text-white col-12 col-md-5 col-sm-4" align=right style=background-color:#52a7e8;border-radius:30px;>Tweet</button>
+      </div>
+      </div>
+      </div>
+        </form>
+        </div>
+        <hr style=border:solid;>
+{%for tweet in tweet%}
+<a style=margin-left:40px>{{tweet.user.username}} |<kbd class="text-muted">{%if tweet.updated %}Updated {{tweet.updated|timesince}} ago{%elif tweet.timestamp%}{{tweet.timestamp|timesince}} ago{%endif%}</kbd>
+  <i class="fa fa-ellipsis-v float-right text-muted" type="button" data-toggle="modal" data-target="#exampleModal" style=margin-right:20px;> </i>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+<div class="modal-header">
+  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  ...
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+  <button type="button" class="btn btn-primary">Save changes</button>
+</div>
+</div>
+</div>
+</div>
+</a>
+
+<p style=margin-left:50px;>{{tweet.content}}</p>
+
+{%if tweet.image%}
+<p style=margin-left:40px;><img src="{{tweet.image.url}}" class="img-responsive col-sm-10" style=border-radius:25px; height="350" alt="myimg"></p>
+{%endif%}
+<div class="row">
+  <div class="col-sm-3" align=right>
+    <a href="{%url 'tweeter:details' tweet.id%}">View Tweet</a>
+    </div>
+    {%if request.user%}
+  <div class="col-sm-7" align=right>
+
+<a align=right class="text-muted" href="{%url 'tweeter:delete' tweet.id%}">Delete</a>
+</div>
+<div class="col-sm-2"align=right>
+<a align=right style=margin-right:50px; class="text-muted" href="{%url 'tweeter:update' tweet.id%}">Edit</a>
+</div>
+{%endif%}
+</div>
+<hr class="bg-white">
+  {%empty%}
+  {%if request.GET.q%}
+  <h5 class="text-danger m-5">Results Not Found!</h5>
+  {%else%}
+  <h5 class="text-white m-5">No tweets yet.</h5>
+  {%endif%}
+{%endfor%}
+</div>
+
+
+
+{%endblock%}

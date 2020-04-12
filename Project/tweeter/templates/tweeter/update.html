@@ -1,0 +1,25 @@
+{%extends 'tweeter/base.html'%}
+{%load crispy_forms_tags%}
+{%block content%}
+<div class="card text-white" style=background-color:#131a2d;>
+  <div class="card-header border-white sticky-top" style=background-color:#131a2d;>
+      <h4 class="text-white float-left">Update</h4>
+    </div>
+    <div class="card-body">
+  <form method="POST" action="" enctype="multipart/form-data">
+  {%csrf_token%}
+  {{form.content|as_crispy_field}}
+  <div class="card-footer">
+    <div class="row">
+      <div class="col-sm-6">
+    {{form.image|as_crispy_field}}
+    </div>
+    <div class="col-sm-6" align=right>
+  <button class="btn text-white col-12 col-md-5 col-sm-4" align=right style=background-color:#52a7e8;border-radius:30px;>Tweet</button>
+  </div>
+  </div>
+  </div>
+    </form>
+    </div>
+    </div>
+{%endblock%}

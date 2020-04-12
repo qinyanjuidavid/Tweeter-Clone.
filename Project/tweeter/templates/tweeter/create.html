@@ -1,0 +1,18 @@
+{%extends 'tweeter/base.html'%}
+{%load crispy_forms_tags%}
+{%block content%}
+<div class="container text-white">
+  <div class="col-sm-6">
+<form method="POST" action="" enctype="multipart/form-data">
+{%csrf_token%}
+{{form.content|as_crispy_field}}
+<div class="card-footer border-0">
+  {{form.image|as_crispy_field}}
+  </div>
+<button class="btn col-sm-4 text-white" style=background-color:#52a7e8;border-radius:30px;>Tweet</button>
+
+  </form>
+  </div>
+
+  </div>
+{%endblock%}

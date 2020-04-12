@@ -1,0 +1,22 @@
+{%extends 'tweeter/base.html'%}
+{%block content%}
+<div class="card text-white" style=background-color:#131a2d;>
+  <div class="card-header border-white sticky-top" style=background-color:#131a2d;>
+      <h4 class="text-white float-left"><a href="{%url 'tweeter:home'%}"><i class="fa fa-long-arrow-left fa-lg text-primary"></i></a> <a style=margin-left:30px;>Tweet</a></h4>
+    </div>
+    <div class="card-body" style=margin-left:25px;margin-right:25px;>
+      <h5>{{tweetdetails.user.username}}</h5>
+      <p>{{tweetdetails.content}}</p>
+      {%if tweetdetails.image%}
+      <p><img src="{{tweetdetails.image.url}}" class="img-responsive col-sm-12" style=border-radius:25px; height="400" alt="myimg"></p>
+      {%endif%}
+    <a class="text-muted">{%if tweetdetails.updated %}Updated {{tweetdetails.updated}}{%elif tweetdetails.timestamp%}{{tweetdetails.timestamp}}{%endif%}</a>
+    <hr class="bg-white">
+    Retweets   Likes
+    <hr class="bg-white">
+      </div>
+
+    </div>
+
+
+{%endblock%}
