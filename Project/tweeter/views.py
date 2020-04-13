@@ -8,8 +8,7 @@ from django.core.paginator import Paginator
 
 @login_required
 def Home(request):
-    tweet=Tweet.objects.all().order_by('-timestamp')
-    print(request.GET)
+    tweet=Tweet.objects.all().order_by('-timestamp','-updated')
     query=request.GET.get('q',None)
     if query is not None:
         tweet=tweet.filter(Q(content__icontains=query)|Q(user__username__icontains=query))

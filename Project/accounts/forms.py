@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from accounts.models import User
+from accounts.models import User,UserProfile
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
 
@@ -58,3 +58,11 @@ class RegistrationForm(ModelForm):
         if commit:
             user.save()
         return user
+class ProfilUpdateForm(ModelForm):
+    class Meta:
+        model=UserProfile
+        fields=('bio','location','birth_date','picture')
+class UserupdateForm(ModelForm):
+    class Meta:
+        model=User
+        fields=('first_name','last_name')

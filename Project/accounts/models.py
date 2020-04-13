@@ -46,6 +46,7 @@ class custommanager(BaseUserManager):
 
 class User(AbstractBaseUser):
     username=models.CharField(max_length=255,verbose_name="User Name",unique=True)
+    timestamp=models.DateField(auto_now_add=True)
     first_name=models.CharField(max_length=256)
     last_name=models.CharField(max_length=255)
     email=models.EmailField(max_length=255,verbose_name="Email Address",unique=True)
@@ -79,6 +80,11 @@ class UserProfile(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE,related_name="profile")
     following=models.ManyToManyField(User,blank=True,related_name="followed_by")
     picture=models.ImageField(upload_to='Profile_picture',default="default.jpg")
+    location=models.CharField(max_length=50,blank=True,null=True)
+    bio=models.TextField(max_length=120)
+    birth_date=models.DateField(blank=True,null=True)
 
     def __str__(self):
-        return str(self.following.all().count())
+        return f'{self.user.first_name} {self.user.last_name} {str(self.following.all().count())} followers'
+    class Meta:
+        verbose_name_plural="UserProfile"
