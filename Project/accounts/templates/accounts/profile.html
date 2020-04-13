@@ -6,6 +6,9 @@
     <div class="row">
       <div class="col-sm-6">
       <h4 class="text-white float-left"><a href="{%url 'tweeter:home'%}"><i class="fa fa-twitter fa-lg text-primary"></i></a><a style=margin-left:20px;>{{user.first_name}} {{user.last_name}}</a></h4>
+      {%for tweet in tweet%}
+      <a class="text-muted">{{tweet.content.count}}</a>
+      {%endfor%}
       </div>
   </div>
     </div>
@@ -18,16 +21,23 @@
     <br>
     <div class="col-sm-10" style=margin-left:15px;margin-top:3px;>
     <a >{{prof.bio}}</a>
-    <div class="row" style=margin-top:3px;>
+    <div class="row" style=margin-top:7px;>
       <div class="col-sm-5">
         <a class="text-muted"><i class="fa fa-map-marker fa-lg"></i> {{prof.location}}</a>
         </div>
-        <div class="col-wm-7 text-muted">
+        <div class="col-sm-7 text-muted">
           <a class="text-muted"><i class="fa fa-calendar" aria-hidden="true"></i> {{user.timestamp}}</a>
           </div>
       </div>
     </div>
-
+    <div class="row" style=margin-top:7px;margin-left:15px;>
+      <div class="col-sm-4">
+        <a href="{%url 'accounts:following'%}" class="text-white">{{prof.following.count}} <a href="{%url 'accounts:following'%}" class="text-muted">Following</a></a>
+        </div>
+        <div class="col-sm-8">
+          <a href="{%url 'accounts:followers'%}" class="text-white"><a href="{%url 'accounts:followers'%}" class="text-muted">Followers</a></a>
+          </div>
+      </div>
 
     </div>
     <div class="col-sm-6">

@@ -85,6 +85,6 @@ class UserProfile(models.Model):
     birth_date=models.DateField(blank=True,null=True)
 
     def __str__(self):
-        return f'{self.user.first_name} {self.user.last_name} {str(self.following.all().count())} followers'
+        return f'{self.user.first_name} {self.user.last_name} {str(self.following.all().count())} following'
     class Meta:
         verbose_name_plural="UserProfile"

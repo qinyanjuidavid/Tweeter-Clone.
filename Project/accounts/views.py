@@ -40,3 +40,13 @@ def ProfileView(request):
     'tweet':tweet
     }
     return render(request,'accounts/profile.html',context)
+def followingView(request):
+    context={
+
+    }
+    return render(request,'accounts/following.html',context)
+def followersView(request):
+    context={
+
+    }
+    return render(request,'accounts/followers.html',context)

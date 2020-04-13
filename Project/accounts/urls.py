@@ -8,5 +8,7 @@ urlpatterns=[
 path('',views.Registration,name="register"),
 path('login/',auth_views.LoginView.as_view(template_name="accounts/login.html"),name='login'),
 path('logout/',auth_views.LogoutView.as_view(template_name="accounts/logout.html"),name="logout"),
-path('Profile/',views.ProfileView,name="profile")
+path('Profile/',views.ProfileView,name="profile"),
+path('following/',views.followingView,name="following"),
+path('followers/',views.followersView,name='followers')
 ]
