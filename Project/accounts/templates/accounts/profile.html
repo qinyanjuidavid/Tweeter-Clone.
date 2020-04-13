@@ -66,6 +66,10 @@
         </div>
       </div>
     <hr class="bg-white">
+    {% for tweet in tweet%}
+    {{tweet.content}}
+
+    {%endfor%}
     </div>
 
 {%endblock%}

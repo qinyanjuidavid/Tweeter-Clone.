@@ -39,32 +39,25 @@
         </div>
         <hr style=border:solid;>
 {%for tweet in tweet%}
-<a style=margin-left:40px>{{tweet.user.username}} |<kbd class="text-muted">{%if tweet.updated %}Updated {{tweet.updated|timesince}} ago{%elif tweet.timestamp%}{{tweet.timestamp|timesince}} ago{%endif%}</kbd>
-  <i class="fa fa-ellipsis-v float-right text-muted" type="button" data-toggle="modal" data-target="#exampleModal" style=margin-right:20px;> </i>
+<div class="row">
+  <div class="col-sm-8">
+<b style=margin-left:40px>{{tweet.user.first_name}} {{tweet.user.last_name}}</b> <a class="text-muted"> @{{tweet.user.username}} .
+{%if tweet.updated %} {{tweet.updated|timesince}} ago{%elif tweet.timestamp%}{{tweet.timestamp|timesince}} ago{%endif%}</a>
+</div>
+<div class="col-sm-4">
+<div class="btn-group dropleft float-right">
+<i type="button" class="fa fa-angle-down fa-lg float-right text-muted" data-toggle="dropdown" style=margin-right:20px; aria-haspopup="true" aria-expanded="false">
+</i>
+<div class="dropdown-menu border-white shadow-lg" style=height:10rem;background-color:#131a2d;>
+  <a class="dropdown-item text-danger" href="{%url 'tweeter:delete' tweet.id%}"><i class="fa fa-trash fa-lg"></i> Delete</a>
+  <a class="dropdown-item text-primary" href="{%url 'tweeter:update' tweet.id%}"><i class="fa fa-edit"></i> Edit</a>
+</div>
+</div>
+  </div>
+</div>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-<div class="modal-dialog" role="document">
-<div class="modal-content">
-<div class="modal-header">
-  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-<div class="modal-body">
-  ...
-</div>
-<div class="modal-footer">
-  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-  <button type="button" class="btn btn-primary">Save changes</button>
-</div>
-</div>
-</div>
-</div>
-</a>
 
-<p style=margin-left:50px;>{{tweet.content}}</p>
+<p style=margin-left:42px;>{{tweet.content}}</p>
 
 {%if tweet.image%}
 <p style=margin-left:40px;><img src="{{tweet.image.url}}" class="img-responsive col-sm-10" style=border-radius:25px; height="350" alt="myimg"></p>
@@ -73,15 +66,7 @@
   <div class="col-sm-3" align=right>
     <a href="{%url 'tweeter:details' tweet.id%}">View Tweet</a>
     </div>
-    {%if request.user%}
-  <div class="col-sm-7" align=right>
 
-<a align=right class="text-muted" href="{%url 'tweeter:delete' tweet.id%}">Delete</a>
-</div>
-<div class="col-sm-2"align=right>
-<a align=right style=margin-right:50px; class="text-muted" href="{%url 'tweeter:update' tweet.id%}">Edit</a>
-</div>
-{%endif%}
 </div>
 <hr class="bg-white">
   {%empty%}
