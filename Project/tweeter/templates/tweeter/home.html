@@ -39,42 +39,36 @@
         </div>
         <hr style=border:solid;>
 {%for tweet in tweet%}
-<div class="row">
-  <div class="col-sm-8">
-<b style=margin-left:40px>{{tweet.user.first_name}} {{tweet.user.last_name}}</b> <a class="text-muted"> @{{tweet.user.username}} .
-{%if tweet.updated %} {{tweet.updated|timesince}} ago{%elif tweet.timestamp%}{{tweet.timestamp|timesince}} ago{%endif%}</a>
-</div>
-<div class="col-sm-4">
-<div class="btn-group dropleft float-right">
-<i type="button" class="fa fa-angle-down fa-lg float-right text-muted" data-toggle="dropdown" style=margin-right:20px; aria-haspopup="true" aria-expanded="false">
-</i>
-<div class="dropdown-menu border-white shadow-lg" style=height:10rem;background-color:#131a2d;>
-  <a class="dropdown-item text-danger" href="{%url 'tweeter:delete' tweet.id%}"><i class="fa fa-trash fa-lg"></i> Delete</a>
-  <a class="dropdown-item text-primary" href="{%url 'tweeter:update' tweet.id%}"><i class="fa fa-edit"></i> Edit</a>
-</div>
-</div>
-  </div>
-</div>
-
-
-<p style=margin-left:42px;>{{tweet.content}}</p>
-
-{%if tweet.image%}
-<p style=margin-left:40px;><img src="{{tweet.image.url}}" class="img-responsive col-sm-10" style=border-radius:25px; height="350" alt="myimg"></p>
-{%endif%}
-<div class="row">
-  <div class="col-sm-3" align=right>
-    <a href="{%url 'tweeter:details' tweet.id%}">View Tweet</a>
+    <div class="row">
+      <div class="col-sm-1">
+        image
+        </div>
+      <div class="col-sm-10">
+    <b>{{tweet.user.first_name|capfirst}} {{tweet.user.last_name|capfirst}}</b> <a class="text-muted"> @{{tweet.user.username}} .
+    {%if tweet.updated %} {{tweet.updated|timesince}} ago{%elif tweet.timestamp%}{{tweet.timestamp|timesince}} ago{%endif%}</a>
+    <p>{{tweet.content}}</p>
+    {%if tweet.image%}
+    <img src="{{tweet.image.url}}" class="img-responsive col-sm-12" style=border-radius:25px; height="350" alt="myimg">
+    {%endif%}
     </div>
-
-</div>
-<hr class="bg-white">
-  {%empty%}
-  {%if request.GET.q%}
-  <h5 class="text-danger m-5">Results Not Found!</h5>
-  {%else%}
-  <h5 class="text-white m-5">No tweets yet.</h5>
-  {%endif%}
+    <div class="col-sm-1">
+    <div class="btn-group dropleft float-right">
+    <i type="button" class="fa fa-angle-down fa-lg float-right text-muted" data-toggle="dropdown" style=margin-right:20px; aria-haspopup="true" aria-expanded="false">
+    </i>
+    <div class="dropdown-menu border-white shadow-lg" style=height:10rem;background-color:#131a2d;>
+      <a class="dropdown-item text-danger" href="{%url 'tweeter:delete' tweet.id%}"><i class="fa fa-trash fa-lg"></i> Delete</a>
+      <a class="dropdown-item text-primary" href="{%url 'tweeter:update' tweet.id%}"><i class="fa fa-edit"></i> Edit</a>
+    </div>
+    </div>
+      </div>
+      </div>
+      <hr class="bg-white">
+      {%empty%}
+      {%if request.GET.q%}
+      <h5 class="text-danger">Results Not Found!</h5>
+      {%else%}
+      <h5 class="text-white">No tweets yet.</h5>
+      {%endif%}
 {%endfor%}
 </div>
 

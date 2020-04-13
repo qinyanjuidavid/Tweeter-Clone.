@@ -5,6 +5,7 @@ from tweeter.forms import TweetCreationForm
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.core.paginator import Paginator
+from accounts.models import UserProfile
 
 @login_required
 def Home(request):
@@ -24,18 +25,10 @@ def Home(request):
         form=TweetCreationForm()
     context={
     'tweet':tweet,
-    'form':form
+    'form':form,
+    
     }
     return render(request,'tweeter/home.html',context)
-'''def search(request,*args,**kwargs):
-
-    #pages=Paginator(request,results,1)
-    context={
-    #'items':pages[0],
-    #'page_range':pages[1],
-    'results':results
-    }
-    return render(request,'tweeter/search.html',qs)'''
 @login_required
 def TweetDetails(request,id):
     tweetdetails=Tweet.objects.get(id=id)
