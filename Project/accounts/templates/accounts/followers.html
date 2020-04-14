@@ -7,8 +7,39 @@
       <h4 class="text-white float-left"><a href="{%url 'tweeter:home'%}"><i class="fa fa-twitter fa-lg text-primary"></i></a><a style=margin-left:20px;>{{user.first_name}} {{user.last_name}}</a></h4>
       </div>
   </div>
+  <a class="text-muted" style=margin-left:3rem;>@{{user.username}}</a>
+  <div class="row" style=margin-top:7px;>
+    <div class="col-sm-6">
+      <a href="{%url 'accounts:followers'%}" class="nav-link active"><button class="btn border-primary shadow-lg col-sm-12" style=color:dodgerblue;>Followers</button></a>
+      </div>
+<div class="col-sm-6">
+  <a href="{%url 'accounts:following'%}"><button class="btn text-muted border-muted col-sm-12">Following</button></a>
+  </div>
     </div>
-    
+    </div>
+    {%for followingObj in followingObj%}
+    {%for profile in followingObj.user.followed_by.all%}
+    <div class="row m-1">
+    <div class="col-sm-1">
+      image
+    </div>
+    <div class="col-sm-11">
+      <div class="row">
+        <div class="col-sm-9">
+          <b>{{profile.user.first_name}} {{profile.user.last_name}}</b>
+          <p class="text-muted">@{{profile.user.username}}</p>
+          {{profile.bio}}
+
+          </div>
+          <div class="col-sm-3" align=right>
+            <button class="btn btn-primary col-sm-12" style=border-radius:30px;>follow</button>
+            </div>
+        </div>
+      </div>
+      </div>
+    <hr class="bg-secondary">
+    {%endfor%}
+    {%endfor%}
     </div>
 
 {%endblock%}

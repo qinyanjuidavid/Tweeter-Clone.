@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import BaseUserManager,AbstractBaseUser
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 
 
@@ -88,3 +90,7 @@ class UserProfile(models.Model):
         return f'{self.user.first_name} {self.user.last_name} {str(self.following.all().count())} following'
     class Meta:
         verbose_name_plural="UserProfile"
+@receiver(post_save,sender=User)
+def create_profile(sender,instance,created,**kwargs):
+    if created:
+        profile,new=UserProfile.objects.get_or_create(user=instance)

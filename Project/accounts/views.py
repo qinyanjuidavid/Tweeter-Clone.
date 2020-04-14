@@ -41,12 +41,14 @@ def ProfileView(request):
     }
     return render(request,'accounts/profile.html',context)
 def followingView(request):
+    followingObj=UserProfile.objects.filter(user=request.user)
     context={
-
+    'followingObj':followingObj
     }
     return render(request,'accounts/following.html',context)
 def followersView(request):
+    followingObj=UserProfile.objects.filter(user=request.user)
     context={
-
+    'followingObj':followingObj
     }
     return render(request,'accounts/followers.html',context)
