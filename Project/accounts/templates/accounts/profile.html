@@ -13,7 +13,7 @@
   </div>
     </div>
     <div class="row">
-      <div class="col-sm-6">
+      <div class="col-sm-7">
     <img src="{{prof.picture.url}}" width="150" height="150" class="rounded-circle m-1" alt="profile"><br>
     <b style=margin-left:30px;>{{user.first_name}} {{user.last_name}}</b>
     <br>
@@ -22,27 +22,27 @@
     <div class="col-sm-10" style=margin-left:15px;margin-top:3px;>
     <a >{{prof.bio}}</a>
     <div class="row" style=margin-top:7px;>
-      <div class="col-sm-5">
+      <div class="col-sm-6">
         <a class="text-muted"><i class="fa fa-map-marker fa-lg"></i> {{prof.location}}</a>
         </div>
-        <div class="col-sm-7 text-muted">
+        <div class="col-sm-6 text-muted">
           <a class="text-muted"><i class="fa fa-calendar" aria-hidden="true"></i> {{user.timestamp}}</a>
           </div>
       </div>
     </div>
     <div class="row" style=margin-top:7px;margin-left:15px;>
-      <div class="col-sm-4">
+      <div class="col-sm-5">
         <a href="{%url 'accounts:following'%}" class="text-white">{{prof.following.count}} <a href="{%url 'accounts:following'%}" class="text-muted">Following</a></a>
         </div>
-        <div class="col-sm-8">
-          <a href="{%url 'accounts:followers'%}" class="text-white"><a href="{%url 'accounts:followers'%}" class="text-muted">Followers</a></a>
+        <div class="col-sm-7">
+          <a href="{%url 'accounts:followers'%}" class="text-white">{{prof.user.followed_by.count}} <a href="{%url 'accounts:followers'%}" class="text-muted">Followers</a></a>
           </div>
       </div>
 
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-5">
           <div class="col-sm-12" style=margin-top:8rem; align=center>
-          <a href="" class="btn btn-primary col-sm-6"  data-toggle="modal" data-target="#modalPoll-1">Edit Profile</a>
+          <a href="" class="btn btn-primary col-sm-6" style=border-radius:30px;  data-toggle="modal" data-target="#modalPoll-1">Edit Profile</a>
           </div>
       <div class="modal fade right position-fixed" id="modalPoll-1" tabindex="-1" role="dialog"  aria-labelledby="exampleModalLabel"
         aria-hidden="true" data-backdrop="false">

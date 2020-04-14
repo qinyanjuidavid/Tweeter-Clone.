@@ -45,7 +45,7 @@
         image
         </div>
       <div class="col-sm-10">
-    <b>{{tweet.user.first_name|capfirst}} {{tweet.user.last_name|capfirst}}</b> <a class="text-muted"> @{{tweet.user.username}} .
+    <b><a href="{%url 'accounts:userdetail' tweet.user.username%}" class="text-white">{{tweet.user.first_name|capfirst}} {{tweet.user.last_name|capfirst}}</a></b> <a class="text-muted"> @{{tweet.user.username}} .
     {%if tweet.updated %} {{tweet.updated|timesince}} ago{%elif tweet.timestamp%}{{tweet.timestamp|timesince}} ago{%endif%}</a>
     <p>{{tweet.content}}</p>
     {%if tweet.image%}

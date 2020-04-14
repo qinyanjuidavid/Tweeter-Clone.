@@ -26,7 +26,7 @@
     <div class="col-sm-11">
       <div class="row">
         <div class="col-sm-9">
-          <b>{{profile.user.first_name}} {{profile.user.last_name}}</b>
+          <b><a href="{%url 'accounts:userdetail' profile.user.username%}" class="text-white">{{profile.user.first_name}} {{profile.user.last_name}}</a></b>
           <p class="text-muted">@{{profile.user.username}}</p>
           {{profile.bio}}
 

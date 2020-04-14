@@ -27,7 +27,7 @@
 <div class="col-sm-11">
   <div class="row">
     <div class="col-sm-9">
-      <b>{{following.first_name}} {{following.last_name}}</b>
+      <b><a href="{%url 'accounts:userdetail' following.username%}" class="text-white">{{following.first_name}} {{following.last_name}}</a></b>
       <p class="text-muted">@{{following.username}}</p>
       {{followingObj.bio}}
 

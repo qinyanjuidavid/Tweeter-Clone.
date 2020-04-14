@@ -1,10 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 from django.http import HttpResponse,HttpResponseRedirect
 from accounts.forms import RegistrationForm
 from django.contrib import messages
-from accounts.models import UserProfile
+from accounts.models import UserProfile,User
 from accounts.forms import ProfilUpdateForm,UserupdateForm
 from tweeter.models import Tweet
+from django.views.generic import DetailView
 
 
 
@@ -52,3 +53,8 @@ def followersView(request):
     'followingObj':followingObj
     }
     return render(request,'accounts/followers.html',context)
+
+class UserDetailView(DetailView):
+    template_name = "accounts/userdetails.html"
+    def get_object(self):
+        return get_object_or_404(User,username__iexact=self.kwargs.get("username"))

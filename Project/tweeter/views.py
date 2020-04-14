@@ -5,7 +5,7 @@ from tweeter.forms import TweetCreationForm
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.core.paginator import Paginator
-from accounts.models import UserProfile
+from accounts.models import UserProfile,User
 
 @login_required
 def Home(request):
@@ -26,7 +26,7 @@ def Home(request):
     context={
     'tweet':tweet,
     'form':form,
-    
+
     }
     return render(request,'tweeter/home.html',context)
 @login_required
