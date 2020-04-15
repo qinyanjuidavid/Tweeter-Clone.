@@ -9,6 +9,7 @@ from accounts.models import UserProfile,User
 
 @login_required
 def Home(request):
+    #im_following=UserProfile.objects.filter(following=following.user)
     tweet=Tweet.objects.all().order_by('-timestamp','-updated')
     query=request.GET.get('q',None)
     if query is not None:
