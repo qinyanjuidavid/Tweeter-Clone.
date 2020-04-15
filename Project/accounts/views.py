@@ -6,6 +6,7 @@ from accounts.models import UserProfile,User
 from accounts.forms import ProfilUpdateForm,UserupdateForm
 from tweeter.models import Tweet
 from django.views.generic import DetailView
+from django.views import View
 
 
 
@@ -58,3 +59,14 @@ class UserDetailView(DetailView):
     template_name = "accounts/userdetails.html"
     def get_object(self):
         return get_object_or_404(User,username__iexact=self.kwargs.get("username"))
+class UserFollowView(View):
+    def get(self,request,username,*args,**kwargs):
+        toggle_user=get_object_or_404(User,username__iexact=username)
+        if request.user.is_authenticated:
+            user_profile,created=UserProfile.objects.get_or_create(user=request.user)
+            if toggle_user in user_profile.following.all():
+                user_profile.following.remove(toggle_user)
+            else:
+                user_profile.following.add(toggle_user)
+                print(toggle_user)
+        return HttpResponseRedirect(f'/accounts/{username}/')

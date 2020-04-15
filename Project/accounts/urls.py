@@ -1,7 +1,7 @@
 from django.urls import path
 from accounts import views
 from django.contrib.auth import views as auth_views
-from accounts.views import UserDetailView
+from accounts.views import UserDetailView,UserFollowView
 
 app_name="accounts"
 
@@ -13,5 +13,6 @@ path('logout/',auth_views.LogoutView.as_view(template_name="accounts/logout.html
 path('Profile/',views.ProfileView,name="profile"),
 path('following/',views.followingView,name="following"),
 path('followers/',views.followersView,name='followers'),
-path('<username>/',UserDetailView.as_view(),name='userdetail')
+path('<username>/',UserDetailView.as_view(),name='userdetail'),
+path('follow/<username>/',UserFollowView.as_view(),name="follow")
 ]
